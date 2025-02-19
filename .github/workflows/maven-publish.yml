@@ -15,9 +15,6 @@ on:
         required: false
         type: string
         default: "central"
-      version:
-        required: true
-        type: string
       ref:
         required: false
         type: string
