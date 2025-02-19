@@ -41,6 +41,11 @@ on:
       maven_gpg_passphrase:
         required: true
 
+permissions:
+  contents: write
+  packages: write
+  issues: write
+
 jobs:
   upload:
     runs-on: ubuntu-latest
