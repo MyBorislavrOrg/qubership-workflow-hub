@@ -88,6 +88,14 @@ runs:
         check_token "${{ inputs.token }}"
       shell: bash
 
+    - name: Cache local Maven repository
+      uses: actions/cache@v4
+      with:
+        path: ~/.m2/repository
+        key: maven-${{ runner.os }}
+        restore-keys: |
+          maven-${{ runner.os }}
+
     - name: Set up JDK
       uses: actions/setup-java@v4
       with:
