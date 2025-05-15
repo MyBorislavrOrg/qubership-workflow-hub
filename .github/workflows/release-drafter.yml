@@ -43,9 +43,8 @@ jobs:
         with:
           config-name: ${{ inputs.config-name }}
           publish: ${{ inputs.publish }}
-          name: ${{ env.RELEASE_VERSION }}
-          tag: v${{ env.RELEASE_VERSION }}
-          version: v${{ env.RELEASE_VERSION }}
+          name: ${{ inputs.version }}
+          tag: v${{ inputs.version }}
+          version: v${{ inputs.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_VERSION: ${{ inputs.version }}
