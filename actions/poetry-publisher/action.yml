@@ -43,7 +43,7 @@ runs:
         python -m pip install --upgrade pip
         # WA for python 3.8
         effective_python_version=$(python3 --version | cut -d ' ' -f2 | cut -d '.' -f1,2)
-        if [[ "${effective_python_version}" != "3.8" ]]
+        if [[ "${effective_python_version}" != "3.8" ]]; then
           python -m pip install --user pipx
           pipx ensurepath
           pipx install poetry
