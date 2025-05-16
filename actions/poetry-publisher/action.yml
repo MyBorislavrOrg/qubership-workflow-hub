@@ -26,10 +26,14 @@ inputs:
     description: "Parameters for pytest"
     required: false
     default: ""
+  publish:
+    description: "Publish to PyPi"
+    required: false
+    default: "true"
 outputs:
   release-version:
     description: "Published artifact version"
-    value: ${{ steps.publish.outputs.published-version }}
+    value: ${{ steps.get-version.outputs.published-version }}
 runs:
   using: composite
   steps:
@@ -88,13 +92,19 @@ runs:
         poetry run pytest ${{ inputs.pytest_options }}
 
     - name: Publish to PyPi
-      id: publish
+      if: ${{ inputs.publish != 'false' }}
       shell: bash
       run: |
         poetry config pypi-token.pypi $PYPI_TOKEN
         poetry config repositories.test https://test.pypi.org/legacy/
         poetry publish --no-interaction -u __token__ -p $PYPI_TOKEN -r test
-        published_version=$(poetry version | cut -d' ' -f2)
-        echo "published-version=${published_version}" >> $GITHUB_OUTPUT
       env:
         PYPI_TOKEN: ${{ env.PYPI_API_TOKEN }}
+
+    - name: Get published version
+      id: get-version
+      shell: bash
+      run: |
+        published_version=$(poetry version | cut -d' ' -f2)
+        echo "published-version=${published_version}" >> $GITHUB_OUTPUT
+        echo "## Published version: ${published_version}" >> $GITHUB_STEP_SUMMARY
