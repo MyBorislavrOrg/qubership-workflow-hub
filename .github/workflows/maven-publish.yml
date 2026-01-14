@@ -85,7 +85,7 @@ jobs:
 
       - name: Upload all Maven target directories
         if: ${{ inputs.upload-artifact }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ inputs.artifact-id }}
           path: '**/target'
