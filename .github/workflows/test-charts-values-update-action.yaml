@@ -45,7 +45,7 @@ jobs:
           """ > ./tests/config/charts-config.yaml
 
       - name: Run charts-values-update-action
-        uses: netcracker/qubership-workflow-hub/actions/charts-values-update-action@main
+        uses: netcracker/qubership-workflow-hub/actions/charts-values-update-action@fix/charts-versions-update-action
         with:
           release-version: '1.29.4'
           chart-version: '2.0.0'
