@@ -35,8 +35,8 @@ jobs:
           echo """
           charts:
             - name: test-chart
-              chart_file: 'charts/Chart.yaml'
-              values_file: 'charts/values.yaml'
+              chart_file: './charts/Chart.yaml'
+              values_file: './charts/values.yaml'
               image:
                 - docker.io/alpine:#latest
                 - docker.io/nginx:${release}
