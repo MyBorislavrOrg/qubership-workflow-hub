@@ -39,9 +39,9 @@ jobs:
               values_file: charts/values.yaml
               image:
                 - docker.io/alpine:#latest
-                - docker.io/nginx:${release}
+                - docker.io/nginx:\${release}
                 - docker.io/python:#d+\.\d+\.\d+
-                - ghcr.io/super-linter/super-linter:${super_linter_version}
+                - ghcr.io/super-linter/super-linter:\${super_linter_version}
           """ > ./tests/config/charts-config.yaml
 
       - name: Run charts-values-update-action
