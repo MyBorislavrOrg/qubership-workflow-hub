@@ -40,7 +40,7 @@ jobs:
               image:
                 - docker.io/alpine:#latest
                 - docker.io/nginx:${release}
-                - docker.io/python:#d+\.\d+\.\d+
+                - docker.io/python:#\d+\.\d+\.\d+
                 - ghcr.io/super-linter/super-linter:${super_linter_version}
           ''' > ./tests/config/charts-config.yaml
 
