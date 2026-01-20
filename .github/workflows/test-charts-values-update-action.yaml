@@ -35,8 +35,8 @@ jobs:
           echo """
           charts:
             - name: test-chart
-              chart_file: 'Chart.yaml'
-              values_file: 'values.yaml'
+              chart_file: 'charts/Chart.yaml'
+              values_file: 'charts/values.yaml'
               image:
                 - docker.io/alpine:#latest
                 - docker.io/nginx:${release}
@@ -49,10 +49,10 @@ jobs:
         with:
           release-version: '1.29.4'
           chart-version: '2.0.0'
-          config-file: './charts-config.yaml'
+          config-file: './config/charts-config.yaml'
           create-release-branch: 'false'
           version-replace-method: 'parse'
-          working-directory: './tests/charts'
+          working-directory: './tests'
           package-charts: 'true'
           publish-charts: 'true'
         env:
