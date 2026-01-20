@@ -49,7 +49,7 @@ jobs:
         with:
           release-version: '1.29.4'
           chart-version: '2.0.0'
-          config-file: './tests/config/charts-config.yaml'
+          config-file: './charts-config.yaml'
           create-release-branch: 'false'
           version-replace-method: 'parse'
           working-directory: './tests/charts'
