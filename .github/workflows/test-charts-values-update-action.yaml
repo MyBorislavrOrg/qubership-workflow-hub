@@ -32,17 +32,17 @@ jobs:
             serviceName: service-4
             image: ghcr.io/super-linter/super-linter:latest
           """ >> ./tests/charts/values.yaml
-          echo """
+          echo '''
           charts:
             - name: test-chart
               chart_file: charts/Chart.yaml
               values_file: charts/values.yaml
               image:
                 - docker.io/alpine:#latest
-                - docker.io/nginx:\${release}
+                - docker.io/nginx:${release}
                 - docker.io/python:#d+\.\d+\.\d+
-                - ghcr.io/super-linter/super-linter:\${super_linter_version}
-          """ > ./tests/config/charts-config.yaml
+                - ghcr.io/super-linter/super-linter:${super_linter_version}
+          ''' > ./tests/config/charts-config.yaml
 
       - name: Run charts-values-update-action
         uses: netcracker/qubership-workflow-hub/actions/charts-values-update-action@fix/charts-versions-update-action
