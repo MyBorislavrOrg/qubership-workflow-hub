@@ -1,0 +1,42 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/(^|/)apm\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-zA-Z0-9-]+) depName=(?<depName>[^\\s]+) versioning=(?<versioning>[^\\s]+)\\s+\\n\\s*-\\s+Netcracker/qubership-workflow-hub/agent-packages/qubership-workflow-hub-usage#(?<currentValue>[^\\s]+)"
+      ]
+    }
+  ],
+  "postUpgradeTasks": {
+    "commands": [
+      "apm update --yes"
+    ],
+    "fileFilters": [
+      "apm.yml",
+      "apm.lock.yaml",
+      ".claude/**",
+      ".copilot/**"
+    ],
+    "executionMode": "update"
+  },
+  "packageRules": [
+    {
+      "matchDepNames": [
+        "Netcracker/qubership-workflow-hub"
+      ],
+      "groupName": "APM workflow hub package",
+      "commitMessageTopic": "APM workflow hub package",
+      "labels": [
+        "dependencies",
+        "apm"
+      ]
+    }
+  ]
+}
