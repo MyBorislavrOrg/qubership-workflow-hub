@@ -74,4 +74,4 @@ jobs:
           debug: ${{ env.DEBUG }}
           dry-run: ${{ env.DRY_RUN }}
           target: ${{ env.TARGET }}
-          token: ${{ secrets.APM_UPDATE_TOKEN }}
+          token: ${{ github.token }}
