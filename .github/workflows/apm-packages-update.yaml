@@ -44,22 +44,26 @@ jobs:
         run: |
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             echo "Triggered by workflow_dispatch event"
-            echo "BRANCH=${INPUT_BRANCH}" >> $GITHUB_ENV
-            echo "TARGET=${INPUT_TARGET}" >> $GITHUB_ENV
-            echo "DEBUG=${INPUT_DEBUG}" >> $GITHUB_ENV
-            echo "DRY_RUN=${INPUT_DRY_RUN}" >> $GITHUB_ENV
+            {
+            echo "BRANCH=${INPUT_BRANCH}"
+            echo "TARGET=${INPUT_TARGET}"
+            echo "DEBUG=${INPUT_DEBUG}"
+            echo "DRY_RUN=${INPUT_DRY_RUN}"
+            } >> $GITHUB_ENV
           else
             echo "Triggered by schedule event"
-            echo "BRANCH=${DEFAULT_BRANCH}" >> $GITHUB_ENV
-            echo "TARGET=''" >> $GITHUB_ENV
-            echo "DEBUG='false'" >> $GITHUB_ENV
-            echo "DRY_RUN='false'" >> $GITHUB_ENV
+            {
+            echo "BRANCH=${DEFAULT_BRANCH}"
+            echo "TARGET=''"
+            echo "DEBUG='false'"
+            echo "DRY_RUN='false'"
+            } >> $GITHUB_ENV
           fi
 
       - name: Checkout
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10  # v6.0.3
         with:
-          token: ${{ secrets.APM_UPDATE_TOKEN }}
+          token: ${{ github.token }}
           ref: ${{ env.BRANCH }}
           persist-credentials: false
 
